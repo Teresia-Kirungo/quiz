@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(
       Quiz(),
@@ -27,6 +28,16 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scoreKeeper = [
+    Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+    Icon(
+      Icons.close,
+      color: Colors.red,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,14 +63,15 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
-              child: Text(
-                'True',
-                style: TextStyle(
+            child: TextButton(
+              child: Text('True'),
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.green,
+                onSurface: Colors.grey,
+                textStyle: TextStyle(
                   color: Colors.white,
-                  fontSize: 20.0,
+                  fontSize: 20,
                 ),
               ),
               onPressed: () {
@@ -71,33 +83,27 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
-              child: Text(
-                'False',
-                style: TextStyle(
-                  fontSize: 20.0,
+            child: TextButton(
+              child: Text('False'),
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.red,
+                onSurface: Colors.grey,
+                textStyle: TextStyle(
                   color: Colors.white,
+                  fontSize: 20,
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                //The user picked true.
               },
             ),
           ),
         ),
+
         //TODO: Add a Row here as your score keeper
         Row(
-          children: <Widget>[
-            Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-          ],
+          children: scoreKeeper,
         )
       ],
     );
